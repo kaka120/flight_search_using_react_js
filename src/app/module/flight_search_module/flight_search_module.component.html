@@ -1,0 +1,185 @@
+<!--  
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+	  <div class="navbar-header">
+		<a class="navbar-brand" href="#" style="color: black;">Flight Search panel</a>
+	  </div>
+	</div>
+  </nav>
+
+<div class="container-fluid" id="container">
+	<div class="search-panel col-lg-3">
+		<div class="tab-content">
+			<div id="search-form" class="tab-pane fade in active show">
+				<div class="ow-form">
+					<form #f="ngForm" id="owForm" novalidate autocomplete="off" (ngSubmit)="searchFlights(f.value)">
+				        <div style="padding: 3px 8px 0px 8px;border: 1px solid #03A9F4;margin-top: 2%;box-shadow: 3px 3px 12px 0px #00000099;">
+						<div class="form-group">
+							<label for="originCity">Origin City</label>
+						<select class="form-control" [(ngModel)]="flight.source_code" id="originCity" name="originCity" required #originCity='ngModel'>
+							<option value="" [disabled]="true" selected>Enter Origin City</option>
+							<option *ngFor="let pow of city_list | filterUniqueSourceCity "  [value]="pow.source_code">{{pow.source}}</option>
+						</select>
+							<div *ngIf="originCity.errors && (originCity.dirty || originCity.touched)" class="alert alert-danger">
+								<div [hidden]="!originCity.errors.required">
+									Origin City is required.
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="destCity">Destination City</label>
+							<select class="form-control"  [(ngModel)]="flight.destination_code" id="destCity" name="destCity" required #destCity='ngModel'>
+								<option value="" [disabled]="true" selected>Enter Origin City</option>
+								<option *ngFor="let pow of city_list | filterUniqueDestinationCity "  [value]="pow.destination_code">{{pow.destination}}</option>
+							</select>
+							<div *ngIf="destCity.errors && (destCity.dirty || destCity.touched)" class="alert alert-danger">
+								<div [hidden]="!destCity.errors.required">
+									Destination City is required.
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="passCount">Passenger Count</label>
+							<input type="number" class="form-control" [(ngModel)]="flight.SeatsAvailable" id="passCount" name="passCount" placeholder="No. of passengers"
+							 required #passCount='ngModel'>
+							<div *ngIf="passCount.errors && (passCount.dirty || passCount.touched)" class="alert alert-danger">
+								<div [hidden]="!passCount.errors.required">
+									Passenger count is required.
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="submit" class="form-control" class="btn btn-primary btn-block" value="Submit" [disabled]="f.invalid">
+						</div>
+						</div>
+						<div class="form-group" class="ow-slider" style="padding-right: 31px;;border: 1px solid #03A9F4;margin-top: 2%;box-shadow: 3px 3px 12px 0px #00000099;">
+						
+								<div style="font-size: 15px;font-family: fantasy;padding-bottom: 12px;">Advance Search</div>
+							
+							Select Price Range:
+							<nouislider name="Pricerange" [connect]="true" [min]="0" [max]="10000" [step]="500" [(ngModel)]="custom_range" (ngModelChange)="onChange($event)"></nouislider>
+							Price Range: {{custom_range[0] | currency:"INR"}} to {{custom_range[1] | currency:"INR"}}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="result-panel col-lg-9">
+		<div *ngIf="noResults(); else flightsAvailable" class="results">
+			<h3 style="color: #110f0f;text-align: center;font-size: 25px;font-family: initial;height: 50px;padding-top: 15px;background: #0000001f;margin-top: 3px;">NO DATA FOUND</h3>
+		</div>
+		 <ng-template #flightsAvailable>
+			<div *ngIf="flightArr?.length > 0" class="results"></div>
+			<flight_result_module [result]="flightArr" [tripType]="displayRetField" [param_1]="custom_range[0]" [param_2]="custom_range[1]"></flight_result_module>
+		</ng-template> 
+	</div>
+</div>  -->
+
+<header class="h-100">
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark indigo scrolling-navbar intro-fixed-nav" [containerInside]="false">
+        <mdb-navbar-brand>
+            <a class="logo navbar-brand" href="#"><strong>Flight Searching System</strong></a>
+        </mdb-navbar-brand>
+        <links>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active waves-light" mdbWavesEffect>
+                    <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+                </li>
+			</ul>
+			<img style="margin-left: 25px;" src="../../../assets/book-flight.png" width="30"/>
+		</links>
+    </mdb-navbar>
+    <!-- Main -->
+    <div class="view">
+      <div class="full-bg-img">
+          <div class="mask rgba-black-light flex-center">
+              <div class="container text-center white-text">
+				  <div class="jumbotron" style="background-color: #ffffff4f !important;">
+					<div class="container">
+						<div class="row">
+						  <div class="col-sm-4">
+							<form #f="ngForm" id="owForm" novalidate autocomplete="off" (ngSubmit)="searchFlights(f.value)">
+								<div style="padding: 3px 8px 0px 8px;border: 1px solid #03A9F4;margin-top: 2%;box-shadow: 3px 3px 12px 0px #00000099;">
+								<div class="form-group">
+									<label for="originCity">Origin City</label>
+								<select class="form-control" [(ngModel)]="flight.source_code" id="originCity" name="originCity" required #originCity='ngModel'>
+									<option value="" [disabled]="true" selected>Enter Origin City</option>
+									<option *ngFor="let pow of city_list | filterUniqueSourceCity "  [value]="pow.source_code">{{pow.source}}</option>
+								</select>
+									<div *ngIf="originCity.errors && (originCity.dirty || originCity.touched)" class="alert alert-danger">
+										<div [hidden]="!originCity.errors.required">
+											Origin City is required.
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="destCity">Destination City</label>
+									<select class="form-control"  [(ngModel)]="flight.destination_code" id="destCity" name="destCity" required #destCity='ngModel'>
+										<option value="" [disabled]="true" selected>Enter Origin City</option>
+										<option *ngFor="let pow of city_list | filterUniqueDestinationCity "  [value]="pow.destination_code">{{pow.destination}}</option>
+									</select>
+									<div *ngIf="destCity.errors && (destCity.dirty || destCity.touched)" class="alert alert-danger">
+										<div [hidden]="!destCity.errors.required">
+											Destination City is required.
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="passCount">Passenger Count</label>
+									<input type="number" class="form-control" [(ngModel)]="flight.SeatsAvailable" id="passCount" name="passCount" placeholder="No. of passengers"
+									 required #passCount='ngModel'>
+									<div *ngIf="passCount.errors && (passCount.dirty || passCount.touched)" class="alert alert-danger">
+										<div [hidden]="!passCount.errors.required">
+											Passenger count is required.
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="submit" class="form-control" class="btn btn-primary btn-block" value="Submit" [disabled]="f.invalid">
+								</div>
+								</div>
+								<div class="form-group" class="ow-slider" style="padding-right: 31px;;border: 1px solid #03A9F4;margin-top: 2%;box-shadow: 3px 3px 12px 0px #00000099;">
+								
+										<div style="font-size: 15px;font-family: fantasy;padding-bottom: 12px;">Advance Search</div>
+									
+									Select Price Range:
+									<nouislider name="Pricerange" [connect]="true" [min]="0" [max]="10000" [step]="500" [(ngModel)]="custom_range" (ngModelChange)="onChange($event)"></nouislider>
+									Price Range: {{custom_range[0] | currency:"INR"}} to {{custom_range[1] | currency:"INR"}}
+								</div>
+							</form>
+						  </div>
+						  <div class="col-sm-8">
+							<div *ngIf="noResults(); else flightsAvailable" class="results">
+								<h3 style="color: #110f0f;text-align: center;font-size: 25px;font-family: initial;height: 50px;padding-top: 15px;background: #0000001f;margin-top: 3px;">NO DATA FOUND</h3>
+							</div>
+							 <ng-template #flightsAvailable>
+								<div *ngIf="flightArr?.length > 0" class="results"></div>
+								<flight_result_module [result]="flightArr" [tripType]="displayRetField" [param_1]="custom_range[0]" [param_2]="custom_range[1]"></flight_result_module>
+							</ng-template> 
+						  </div>
+						</div>
+					  </div>
+				  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- /.Main -->
+</header>
+  <!--Main Layout-->
+
+  <!--Main Layout-->
+
+  <!-- Footer -->
+<footer class="page-footer font-small blue">
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">© 2020 Copyright:
+	  <a href="">abc@</a>
+	</div>
+	<!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->

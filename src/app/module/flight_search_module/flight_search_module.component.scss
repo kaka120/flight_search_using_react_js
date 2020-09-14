@@ -1,0 +1,95 @@
+@import "~nouislider/distribute/nouislider.min.css";
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    background: #03A9F4;
+}
+
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+#container {
+  height: 100%;
+}
+
+.col-1 {
+  background-color: #DFDECF;
+}
+
+.col-2 {
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 20px;
+}
+
+.results {
+  max-height: 70%;
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="col-"] {
+    width: 100%;
+  }
+}
+
+.ow-form {
+  padding: 5%;
+  border: 1px solid #281C38;
+  border-top: 0;
+  font-size: 0.9em;
+}
+
+.ow-slider {
+  padding: 5%;
+  border: 1px solid #281C38;
+  margin-top: 2%;
+}
+
+/* Here we use angular validation CSS classes */
+
+/* Field borders turn red when touched and invalid */
+
+input.ng-touched.ng-invalid,
+select.ng-touched.ng-invalid {
+  border-color: red;
+  border-width: 2px;
+}
+
+/* Field borders turn green when touched and invalid */
+
+input.ng-touched.ng-valid,
+select.ng-touched.ng-valid {
+  border-color: #281C38;
+  border-width: 2px;
+}
+
+.col-lg-3{
+  background-color: #607d8b7a;
+}
+
+.alert-danger {
+  color: #df1c2e;
+  background-color: #00bcd417;
+  border-color: #00bcd461;
+}
+
+
+/* Custom dashboard section */
+.view {
+  background: url("../../../images/flight_pic.jpg")no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+}
+/* Custom dashboard section */

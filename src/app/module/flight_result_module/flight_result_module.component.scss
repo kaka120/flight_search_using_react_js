@@ -1,0 +1,25 @@
+/* Styles go here */
+
+.row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+  height: 100%;
+}
+
+.col-bookButton {
+  width: 33%;
+}
+
+.col-toDetails {
+  width: 33%;
+}
+
+.col-froDetails {
+  width: 33%;
+}

@@ -1,0 +1,36 @@
+
+<h1 style="color:whitesmoke;">
+	Search Results Engine</h1>
+<hr/>
+<div style="height: 451px;overflow-y: scroll;">
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div class="table-resposive">
+			<table class="table table-striped">
+				<tbody>
+					<tr *ngIf="!(result_1?.length > 0); else flightList">
+						<h3 style="color:red; text-align:center">No results to display1</h3>
+					</tr>
+					<ng-template #flightList>
+						<tr *ngFor="let result of result_1; let i = index">
+							<div id="fltRes">
+								<td class="col-toDetails" style="width: 60%;">
+									<br><h3>{{result?.flight1?.fare }}</h3> 
+									{{result?.flight1?.flight_id}}
+									<br> {{result?.flight1?.source}} > {{result?.flight1?.destination}}
+									<br> Depart: {{result?.flight1?.departs_at }}
+									<br> Arrive: {{result?.flight1?.arrives_at }}
+								</td>
+								<td class="col-bookButton" >
+									<img style="margin-left: 25px;" src="../../../assets/book-flight.png" width="125"/>
+									<button class="btn btn-primary" style="width: 60%;">Book</button>
+								</td>
+							</div>
+						</tr>
+					</ng-template>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</div>
